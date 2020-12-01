@@ -10,6 +10,7 @@ import deleteMany from './deleteMany';
 import updateMany from './updateMany';
 import aggregate from './aggregate';
 import { QueriesAndMutations } from '@paljs/types';
+import pluralize from 'pluralize';
 
 const crud: { [key in QueriesAndMutations]: string } = {
   findUnique,
@@ -42,12 +43,18 @@ export function getCrud(
       : `import ${content} from '${path}'`;
   }
   const modelLower = model.charAt(0).toLowerCase() + model.slice(1);
+  const modelLowerPluralize = pluralize(modelLower);
+  const ModelCapitalPluralize = pluralize(model);
   const importString = getImport(
-    `{ ${type === 'query' ? 'queryField' : 'mutationField'}, arg }`,
+    `{ ${
+      type === 'query' ? 'queryField' : 'mutationField'
+    }, arg, nonNull, nullable }`,
     '@nexus/schema',
   );
   return crud[key]
     .replace(/#{Model}/g, model)
+    .replace(/#{modelLowerPluralize}/g, modelLowerPluralize)
+    .replace(/#{ModelCapitalPluralize}/g, ModelCapitalPluralize)
     .replace(/#{model}/g, modelLower)
     .replace(/#{import}/g, importString)
     .replace(/#{as}/g, isJS ? '' : ' as any')
