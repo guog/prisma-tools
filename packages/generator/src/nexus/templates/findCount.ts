@@ -54,7 +54,7 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
     )
   },
   resolve(_parent, args, {prisma}) {
-    return prisma.#{model}.count(args)
+    return prisma.#{model}.count(args#{as})
   },
 });
 #{exportJs}
