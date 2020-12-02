@@ -1,5 +1,5 @@
 export default `
-#{import}
+import { mutationField, arg, nonNull, nullable } from '@nexus/schema'
 
 #{exportTs}const #{Model}UpdateManyMutation = mutationField('updateMany#{Model}', {
   type: nonNull('BatchPayload'),

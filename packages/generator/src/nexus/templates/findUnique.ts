@@ -1,5 +1,5 @@
 export default `
-#{import}
+import { queryField, arg, nonNull, nullable } from '@nexus/schema'
 
 #{exportTs}const #{Model}FindUniqueQuery = queryField('findUnique#{Model}', {
   type: nullable('#{Model}'),

@@ -1,5 +1,5 @@
 export default `
-#{import}
+import { mutationField, arg, nonNull } from '@nexus/schema'
 
 #{exportTs}const #{Model}UpdateOneMutation = mutationField('updateOne#{Model}', {
   type: nonNull('#{Model}'),

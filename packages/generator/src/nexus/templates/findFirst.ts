@@ -4,7 +4,7 @@ import { queryField, arg, nullable, list, nonNull, intArg } from '@nexus/schema'
 #{exportTs}const #{Model}FindFirstQuery = queryField('findFirst#{Model}', {
   type: nullable('#{Model}'),
   description:
-    '查找第一个符合条件的 #{Model} 数据,参考 [findFirst](https://www.prisma.io/docs/concepts/components/prisma-client/crud#findfirst)',
+    '查找第一个符合条件的 #{Model},参考 [findFirst](https://www.prisma.io/docs/concepts/components/prisma-client/crud#findfirst)',
   args: {
     where: nullable(
       arg({

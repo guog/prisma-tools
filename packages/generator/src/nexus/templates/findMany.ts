@@ -1,5 +1,5 @@
 export default `
-#{import}
+import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
 
 #{exportTs}const #{Model}FindManyQuery = queryField('findMany#{Model}', {
   type: nonNull(list(nonNull('#{Model}'))),
