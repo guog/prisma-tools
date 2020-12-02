@@ -64,9 +64,9 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
 // Compatible with old API
 #{exportTs}const #{ModelCapitalPluralize}Query = queryField('#{modelLowerPluralize}', {
   type: nonNull(list(nonNull('#{Model}'))),
-  deprecation: '已弃用,请使用 findMany#{Model}',
   description:
     '查找多个,返回 #{Model} 数组,参考[FindMany](https://www.prisma.io/docs/concepts/components/prisma-client/crud#findmany)',
+  deprecation: '已过时且不再支持,下一个主要版本可能移除,请使用 findMany#{Model} 代替',
   args: {
     where: nullable(
       arg({
