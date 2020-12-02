@@ -8,7 +8,7 @@ import { mutationField, arg, nonNull, nullable } from '@nexus/schema'
   args: {
     where: nullable(
       arg({
-        type: '#{Model}WhereInput',,
+        type: '#{Model}WhereInput',
         description: '过滤条件',
       })
     ),
