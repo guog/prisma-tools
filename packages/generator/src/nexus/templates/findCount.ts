@@ -2,8 +2,9 @@ export default `
 import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
 
 #{exportTs}const #{Model}FindCountQuery = queryField('findMany#{Model}Count', {
-  type: nonNull('Int'),description:
-  '统计符合条件的 #{Model}数据条数,可参考 [count](https://www.prisma.io/docs/concepts/components/prisma-client/crud#count)',
+  type: nonNull('Int'),
+  description:
+    '统计符合条件的 #{Model}数据条数,参考 [count](https://www.prisma.io/docs/concepts/components/prisma-client/crud#count)',
   args: {
     where: nullable(
       arg({
