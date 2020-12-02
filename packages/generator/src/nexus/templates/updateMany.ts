@@ -14,10 +14,10 @@ import { mutationField, arg, nonNull, nullable } from '@nexus/schema'
     ),
     data: nonNull(
       arg({
-        type: '#{Model}UpdateManyMutationInput',,
+        type: '#{Model}UpdateManyMutationInput',
         description: '数据值'
       })
-    ),
+    )
   },
   resolve(_parent, args, { prisma }) {
     return prisma.#{model}.updateMany(args)

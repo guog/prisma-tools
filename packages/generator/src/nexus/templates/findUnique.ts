@@ -21,7 +21,7 @@ import { queryField, arg, nonNull, nullable } from '@nexus/schema'
 });
 
 //Compatible with old API
-#{exportTs}const #{Model}FindUniqueQuery = queryField('#{model}', {
+#{exportTs}const #{model}Query = queryField('#{model}', {
   type: nullable('#{Model}'),
   description:'精确查找单个 #{Model},参考[findUnique](https://www.prisma.io/docs/concepts/components/prisma-client/crud#findunique)',
   deprecation:'已启用,请使用 findUnique#{Model}',
