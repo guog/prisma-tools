@@ -8,7 +8,7 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
   args: {
     where: nullable(
       arg({
-        type: 'ActionWhereInput',
+        type: '#{Model}WhereInput',
         description:
           '过滤条件,参考[Filtering](https://www.prisma.io/docs/concepts/components/prisma-client/filtering)'
       })
@@ -17,7 +17,7 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
     orderBy: list(
       nonNull(
         arg({
-          type: 'ActionOrderByInput',
+          type: '#{Model}OrderByInput',
           description:
             '排序规则,参考[Sorting](https://www.prisma.io/docs/concepts/components/prisma-client/sorting)'
         })
@@ -25,7 +25,7 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
     ),
     cursor: nullable(
       arg({
-        type: 'ActionWhereUniqueInput',
+        type: '#{Model}WhereUniqueInput',
         description:
           '分页使用,游标起始位置,参考[Cursor-based pagination](https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination)'
       })
@@ -34,7 +34,7 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
       list(
         nonNull(
           arg({
-            type: 'ActionDistinctFieldEnum',
+            type: '#{Model}DistinctFieldEnum',
             description:
               '结果去重,参考[Distinct](https://www.prisma.io/docs/concepts/components/prisma-client/distinct)'
           })
