@@ -58,5 +58,35 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
     return prisma.#{model}.count(args#{as})
   },
 });
+
+export const #{modelLowerPluralize}CountQuery = queryField('#{modelLowerPluralize}Count', {
+  type: nonNull('BatchPayload'),
+  description:
+    '统计符合条件的 #{Model}数据条数,参考 [count](https://www.prisma.io/docs/concepts/components/prisma-client/crud#count)',
+  deprecation:
+    '已过时且不再支持,下一个主要版本可能移除,请使用 findMany#{Model}Count',
+  args: {
+    where: nullable('#{Model}WhereInput')
+  },
+  async resolve(_root, { where }, { prisma }) {
+    const count = await prisma.#{model}.count({ where })
+    return { count }
+  }
+})
+
+export const count#{ModelCapitalPluralize}Query = queryField('count#{ModelCapitalPluralize}', {
+  type: nonNull('BatchPayload'),
+  description:
+    '统计符合条件的 #{Model}数据条数,参考 [count](https://www.prisma.io/docs/concepts/components/prisma-client/crud#count)',
+  deprecation:
+  '已过时且不再支持,下一个主要版本可能移除,请使用 findMany#{Model}Count',
+  args: {
+    where: nullable('#{Model}WhereInput')
+  },
+  async resolve(_root, { where }, { prisma }) {
+    const count = await prisma.#{model}.count({ where })
+    return { count }
+  }
+})
 #{exportJs}
 `;
