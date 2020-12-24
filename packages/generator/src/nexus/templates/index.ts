@@ -41,10 +41,30 @@ export function getCrud(
       ? `const ${content} = require('${path}')`
       : `import ${content} from '${path}'`;
   }
+  function getImportArgs() {
+    switch (key) {
+      case 'aggregate':
+      case 'findFirst':
+        return ', list';
+      case 'findCount':
+      case 'findMany':
+        return ', nonNull, list';
+      case 'findUnique':
+      case 'deleteOne':
+      case 'deleteMany':
+      case 'createOne':
+      case 'updateMany':
+      case 'updateOne':
+      case 'upsertOne':
+        return ', nonNull';
+    }
+  }
   const modelLower = model.charAt(0).toLowerCase() + model.slice(1);
   const importString = getImport(
-    `{ ${type === 'query' ? 'queryField' : 'mutationField'}, arg }`,
-    '@nexus/schema',
+    `{ ${
+      type === 'query' ? 'queryField' : 'mutationField'
+    }, arg${getImportArgs()} }`,
+    'nexus',
   );
   return crud[key]
     .replace(/#{Model}/g, model)
