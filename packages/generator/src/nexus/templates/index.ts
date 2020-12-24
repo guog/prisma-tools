@@ -10,7 +10,6 @@ import deleteMany from './deleteMany';
 import updateMany from './updateMany';
 import aggregate from './aggregate';
 import { QueriesAndMutations } from '@paljs/types';
-import pluralize from 'pluralize';
 
 const crud: { [key in QueriesAndMutations]: string } = {
   findUnique,
@@ -42,19 +41,33 @@ export function getCrud(
       ? `const ${content} = require('${path}')`
       : `import ${content} from '${path}'`;
   }
+  function getImportArgs() {
+    switch (key) {
+      case 'aggregate':
+      case 'findFirst':
+        return ', list';
+      case 'findCount':
+      case 'findMany':
+        return ', nonNull, list';
+      case 'findUnique':
+      case 'deleteOne':
+      case 'deleteMany':
+      case 'createOne':
+      case 'updateMany':
+      case 'updateOne':
+      case 'upsertOne':
+        return ', nonNull';
+    }
+  }
   const modelLower = model.charAt(0).toLowerCase() + model.slice(1);
-  const modelLowerPluralize = pluralize(modelLower);
-  const ModelCapitalPluralize = pluralize(model);
   const importString = getImport(
     `{ ${
       type === 'query' ? 'queryField' : 'mutationField'
-    }, arg, nonNull, nullable }`,
-    '@nexus/schema',
+    }, arg${getImportArgs()} }`,
+    'nexus',
   );
   return crud[key]
     .replace(/#{Model}/g, model)
-    .replace(/#{modelLowerPluralize}/g, modelLowerPluralize)
-    .replace(/#{ModelCapitalPluralize}/g, ModelCapitalPluralize)
     .replace(/#{model}/g, modelLower)
     .replace(/#{import}/g, importString)
     .replace(/#{as}/g, isJS ? '' : ' as any')

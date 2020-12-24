@@ -1,8 +1,8 @@
 export default `
-import { queryField, arg, nullable, list, nonNull, intArg } from '@nexus/schema'
+import { queryField, arg, list, nonNull, nullable } from '@nexus/schema'
 
 #{exportTs}const #{Model}AggregateQuery = queryField('aggregate#{Model}', {
-  type: nullable('Aggregate#{Model}'),
+  type: 'Aggregate#{Model}',
   description:
     '在 #{Model} 中数字型(Int,Float)字段上进行聚合操作,参考 [Aggregations](https://www.prisma.io/docs/concepts/components/prisma-client/aggregations)',
   args: {
@@ -33,7 +33,7 @@ import { queryField, arg, nullable, list, nonNull, intArg } from '@nexus/schema'
       list(
         nonNull(
           arg({
-            type: '#{Model}DistinctFieldEnum',
+            type: '#{Model}ScalarFieldEnum',
             description:
               '结果去重,参考[Distinct](https://www.prisma.io/docs/concepts/components/prisma-client/distinct)'
           })
@@ -41,13 +41,15 @@ import { queryField, arg, nullable, list, nonNull, intArg } from '@nexus/schema'
       )
     ),
     skip: nullable(
-      intArg({
+      arg({
+        type: 'Int',
         description:
           '分页使用,跳过的行数,参考[Pagination](https://www.prisma.io/docs/concepts/components/prisma-client/pagination)'
       })
     ),
     take: nullable(
-      intArg({
+      arg({
+        type: 'Int',
         description:
           '分页使用,每页行数,参考[Pagination](https://www.prisma.io/docs/concepts/components/prisma-client/pagination)'
       })
@@ -55,7 +57,7 @@ import { queryField, arg, nullable, list, nonNull, intArg } from '@nexus/schema'
   },
   resolve(_parent, args, { prisma, select }) {
     return prisma.#{model}.aggregate({...args, ...select})#{as}
-  },
+  }
 });
 #{exportJs}
 `;

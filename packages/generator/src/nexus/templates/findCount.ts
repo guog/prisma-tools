@@ -1,5 +1,5 @@
 export default `
-import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
+import { queryField, arg, nonNull, nullable, list } from '@nexus/schema'
 
 #{exportTs}const #{Model}FindCountQuery = queryField('findMany#{Model}Count', {
   type: nonNull('Int'),
@@ -13,7 +13,6 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
           '过滤条件,参考[Filtering](https://www.prisma.io/docs/concepts/components/prisma-client/filtering)'
       })
     ),
-
     orderBy: list(
       nonNull(
         arg({
@@ -34,7 +33,7 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
       list(
         nonNull(
           arg({
-            type: '#{Model}DistinctFieldEnum',
+            type: '#{Model}ScalarFieldEnum',
             description:
               '结果去重,参考[Distinct](https://www.prisma.io/docs/concepts/components/prisma-client/distinct)'
           })
@@ -42,13 +41,15 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
       )
     ),
     skip: nullable(
-      intArg({
+      arg({
+        type: 'Int',
         description:
           '分页使用,跳过的行数,参考[Pagination](https://www.prisma.io/docs/concepts/components/prisma-client/pagination)'
       })
     ),
     take: nullable(
-      intArg({
+      arg({
+        type: 'Int',
         description:
           '分页使用,每页行数,参考[Pagination](https://www.prisma.io/docs/concepts/components/prisma-client/pagination)'
       })

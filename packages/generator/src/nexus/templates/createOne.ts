@@ -9,16 +9,16 @@ import { mutationField, arg, nonNull } from '@nexus/schema'
     data: nonNull(
       arg({
         type: '#{Model}CreateInput',
-        description: '数据值',
+        description: '数据值'
       })
     ),
   },
   resolve(_parent, { data }, { prisma, select }) {
     return prisma.#{model}.create({
       data,
-      ...select,
+      ...select
     })
-  },
+  }
 });
 #{exportJs}
 `;

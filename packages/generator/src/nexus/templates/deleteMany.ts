@@ -16,7 +16,7 @@ import { mutationField, arg, nonNull, nullable } from '@nexus/schema'
   resolve: async (_parent, { where }, { prisma }) => {
     #{onDelete}
     return prisma.#{model}.deleteMany({ where })
-  },
+  }
 });
 #{exportJs}
 `;

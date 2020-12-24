@@ -2,7 +2,7 @@ export default `
 import { mutationField, arg, nonNull } from '@nexus/schema'
 
 #{exportTs}const #{Model}DeleteOneMutation = mutationField('deleteOne#{Model}', {
-  type: nonNull('#{Model}'),
+  type: '#{Model}',
   description:
     '删除 #{Model},参考 [delete](https://www.prisma.io/docs/concepts/components/prisma-client/crud#delete)',
   args: {

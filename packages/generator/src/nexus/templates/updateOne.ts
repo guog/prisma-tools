@@ -17,7 +17,7 @@ import { mutationField, arg, nonNull } from '@nexus/schema'
         type: '#{Model}UpdateInput',
         description: '数据值',
       })
-    ),
+    )
   },
   resolve(_parent, { data, where }, { prisma, select }) {
     return prisma.#{model}.update({

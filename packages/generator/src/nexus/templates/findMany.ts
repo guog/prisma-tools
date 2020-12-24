@@ -33,7 +33,7 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
       list(
         nonNull(
           arg({
-            type: '#{Model}DistinctFieldEnum',
+            type: '#{Model}ScalarFieldEnum',
             description:
               '结果去重,参考[Distinct](https://www.prisma.io/docs/concepts/components/prisma-client/distinct)'
           })
@@ -41,13 +41,15 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
       )
     ),
     skip: nullable(
-      intArg({
+      arg({
+        type: 'Int',
         description:
           '分页使用,跳过的行数,参考[Pagination](https://www.prisma.io/docs/concepts/components/prisma-client/pagination)'
       })
     ),
     take: nullable(
-      intArg({
+      arg({
+        type: 'Int',
         description:
           '分页使用,每页行数,参考[Pagination](https://www.prisma.io/docs/concepts/components/prisma-client/pagination)'
       })
@@ -95,7 +97,7 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
       list(
         nonNull(
           arg({
-            type: '#{Model}DistinctFieldEnum',
+            type: '#{Model}ScalarFieldEnum',
             description:
               '结果去重,参考[Distinct](https://www.prisma.io/docs/concepts/components/prisma-client/distinct)'
           })
@@ -103,13 +105,15 @@ import { queryField, arg, nonNull, nullable, list, intArg } from '@nexus/schema'
       )
     ),
     skip: nullable(
-      intArg({
+      arg({
+        type: 'Int',
         description:
           '分页使用,跳过的行数,参考[Pagination](https://www.prisma.io/docs/concepts/components/prisma-client/pagination)'
       })
     ),
     take: nullable(
-      intArg({
+      arg({
+        type: 'Int',
         description:
           '分页使用,每页行数,参考[Pagination](https://www.prisma.io/docs/concepts/components/prisma-client/pagination)'
       })
